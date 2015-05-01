@@ -1,19 +1,25 @@
 package com.herokuapp.ezhao.desserts;
 
 import android.app.Activity;
-
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Dessert {
-    private String dessertName;
-    private String restaurantName;
-    private String restaurantAddress;
-    private boolean restaurantAddressMappable;
-    private String imageUrl;
+@Table(name = "Desserts")
+public class Dessert extends Model {
+    @Column(name = "dessertName") private String dessertName;
+    @Column(name = "restaurantName") private String restaurantName;
+    @Column(name = "restaurantAddress") private String restaurantAddress;
+    @Column(name = "restaurantAddressMappable") private boolean restaurantAddressMappable;
+    @Column(name = "imageUrl") private String imageUrl;
+    @Column(name = "visited") private boolean visited;
 
     public static ArrayList<Dessert> fromCsvFile(Activity activity) {
         ArrayList<Dessert> desserts = new ArrayList<>();
@@ -40,11 +46,20 @@ public class Dessert {
                 }
                 dessert.setRestaurantAddress(restaurantAddress);
 
+                dessert.save();
                 desserts.add(dessert);
                 line = bufferedReader.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return desserts;
+    }
+
+    public static List<Dessert> getAll(Activity activity) {
+        List<Dessert> desserts = new Select().from(Dessert.class).execute();
+        if (desserts.size() == 0) {
+            desserts = Dessert.fromCsvFile(activity);
         }
         return desserts;
     }
