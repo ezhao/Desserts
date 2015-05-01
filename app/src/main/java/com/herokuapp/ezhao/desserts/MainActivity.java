@@ -2,26 +2,28 @@ package com.herokuapp.ezhao.desserts;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class MainActivity extends Activity {
     List<Dessert> desserts;
+    @InjectView(R.id.vpFragments) ViewPager vpFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        desserts = Dessert.getAll(this);
+        ButterKnife.inject(this);
         FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        Dessert dessert = desserts.get(1);
-        ft.replace(R.id.flFragment, DessertFragment.newInstance(dessert));
-        ft.commit();
+        desserts = Dessert.getAll(this);
+        DessertPagerAdapter dessertPagerAdapter = new DessertPagerAdapter(fm, desserts);
+        vpFragments.setAdapter(dessertPagerAdapter);
     }
 
     @Override
