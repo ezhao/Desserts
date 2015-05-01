@@ -1,18 +1,27 @@
 package com.herokuapp.ezhao.desserts;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import java.util.List;
 
 public class MainActivity extends Activity {
+    List<Dessert> desserts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Dessert.getAll(this);
+        desserts = Dessert.getAll(this);
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        Dessert dessert = desserts.get(1);
+        ft.replace(R.id.flFragment, DessertFragment.newInstance(dessert));
+        ft.commit();
     }
 
     @Override

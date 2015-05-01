@@ -9,11 +9,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "Desserts")
-public class Dessert extends Model {
+public class Dessert extends Model implements Serializable {
     @Column(name = "dessertName") private String dessertName;
     @Column(name = "restaurantName") private String restaurantName;
     @Column(name = "restaurantAddress") private String restaurantAddress;
@@ -82,5 +83,17 @@ public class Dessert extends Model {
 
     public void setRestaurantAddressMappable(boolean restaurantAddressMappable) {
         this.restaurantAddressMappable = restaurantAddressMappable;
+    }
+
+    public String getDessertName() {
+        return dessertName;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public String getRestaurantAddress() {
+        return restaurantAddress;
     }
 }
