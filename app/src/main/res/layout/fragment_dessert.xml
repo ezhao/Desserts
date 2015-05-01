@@ -7,6 +7,7 @@
     <Button
         android:id="@+id/btnComplete"
         android:text="@string/complete"
+        android:layout_marginBottom="4dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

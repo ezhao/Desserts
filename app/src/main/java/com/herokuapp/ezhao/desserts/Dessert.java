@@ -85,6 +85,10 @@ public class Dessert extends Model implements Serializable {
         this.restaurantAddressMappable = restaurantAddressMappable;
     }
 
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
     public String getDessertName() {
         return dessertName;
     }
@@ -95,5 +99,9 @@ public class Dessert extends Model implements Serializable {
 
     public String getRestaurantAddress() {
         return restaurantAddress;
+    }
+
+    public boolean isVisited() {
+        return visited;
     }
 }
