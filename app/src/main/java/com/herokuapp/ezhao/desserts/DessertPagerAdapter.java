@@ -23,4 +23,9 @@ public class DessertPagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return desserts.size();
     }
+
+    @Override
+    public float getPageWidth(int position) {
+        return 0.93f;
+    }
 }

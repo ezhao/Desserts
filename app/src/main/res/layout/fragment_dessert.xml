@@ -1,22 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:padding="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvDessertName"
+    <Button
+        android:id="@+id/btnComplete"
+        android:text="@string/complete"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvRestaurantName"
-        android:layout_below="@id/tvDessertName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_below="@id/btnComplete"
+        android:background="@drawable/card_bg"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/tvRestaurantAddress"
-        android:layout_below="@id/tvRestaurantName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvDessertName"
+            android:textSize="32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvRestaurantName"
+            android:textSize="24sp"
+            android:layout_below="@id/tvDessertName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvRestaurantAddress"
+            android:textSize="18sp"
+            android:layout_below="@id/tvRestaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

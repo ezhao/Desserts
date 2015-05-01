@@ -1,9 +1,11 @@
 package com.herokuapp.ezhao.desserts;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
@@ -22,8 +24,17 @@ public class MainActivity extends Activity {
         ButterKnife.inject(this);
         FragmentManager fm = getFragmentManager();
         desserts = Dessert.getAll(this);
+
         DessertPagerAdapter dessertPagerAdapter = new DessertPagerAdapter(fm, desserts);
         vpFragments.setAdapter(dessertPagerAdapter);
+        vpFragments.setClipToPadding(false);
+
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            getActionBar().hide();
+        }
+
+        Log.i("Emily", "deserts length: " + desserts.size());
     }
 
     @Override
